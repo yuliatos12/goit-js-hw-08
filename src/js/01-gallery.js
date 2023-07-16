@@ -29,9 +29,7 @@ const markup = galleryItems
 gallery.insertAdjacentHTML("beforeend", markup);
 gallery.addEventListener("click", openModal);
 
-function openModal(event) {
-  event.preventDefault();
-}
+
 const lightbox = new SimpleLightbox('.gallery__link', {
     captions: true,
     captionDelay: 250,

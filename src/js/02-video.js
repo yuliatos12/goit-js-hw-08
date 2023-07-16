@@ -8,10 +8,15 @@ function saveCurrentTime(currentTime) {
   localStorage.setItem(STORAGE_KEY, currentTime);
 }
 
-player.on('timeupdate', throttle(function (event) {
-  const currentTime = event.seconds;
+
+function handleTimeUpdate(e) {
+  const currentTime = e.seconds;
   saveCurrentTime(currentTime);
-}, 1000));
+}
+
+const throttledHandleTimeUpdate = throttle(handleTimeUpdate, 1000);
+
+player.on('timeupdate', throttledHandleTimeUpdate);
 
 const savedTime = localStorage.getItem(STORAGE_KEY);
 if (savedTime) {
